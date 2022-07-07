@@ -7,8 +7,8 @@ function App() {
 		<AuthProvider>
 			<BrowserRouter>
 				<Routes>
-					{publicRoutes.map(({ path, Element }, index) => (
-						<Route key={index} path={path} element={<Element />} />
+					{publicRoutes.map(({ ...rest }, index) => (
+						<Route key={index} {...rest} />
 					))}
 				</Routes>
 			</BrowserRouter>
