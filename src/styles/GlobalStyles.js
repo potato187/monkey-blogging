@@ -3,9 +3,14 @@ import { normalize } from "styled-normalize";
 
 const GlobalStyle = createGlobalStyle`
 	 ${normalize}
-	
+
+	 html {
+		 font-size: 56.25%;
+	 }
 	 body {
-		font: 400 1rem/1.5 'Segoe UI';
+		font: ${(props) => `400 1.6rem/1.5 ${props.theme.fontFamily}`};
+		min-height: 100vh;
+		overflow-x: hidden;
 	 }
 `;
 

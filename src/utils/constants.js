@@ -12,4 +12,19 @@ export const theme = {
 	grayf1: "#F1F1F3",
 	gray80: "#808191",
 	black: "#171725",
+
+	input: {
+		label: "##4B5264",
+		textPlaceHolder: "#84878B",
+		text: "#4F4F4F",
+		background: "#ffffff",
+		default: "#999999",
+		error: "#FF543D",
+		success: "#1DC071",
+	},
+
+	fontFamily: "Poppins, sans-serif",
+	lineHeight: 1.5,
+	lineHeightBody: "1.1em",
+	spacingRatio: 4,
 };
