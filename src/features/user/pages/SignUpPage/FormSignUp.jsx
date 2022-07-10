@@ -1,11 +1,10 @@
+import { CustomButton } from "@/components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from "prop-types";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { CustomField } from "../components";
-import { CustomButton } from "@/components";
-import { Link } from "react-router-dom";
+import { Field } from "../components";
 
 const FormSignUp = ({ onSubmit = null }) => {
 	const schema = Yup.object().shape({
@@ -31,21 +30,16 @@ const FormSignUp = ({ onSubmit = null }) => {
 
 	return (
 		<form onSubmit={handleSubmit(handleOnSubmit)} noValidate>
-			<CustomField
-				control={control}
-				type='text'
-				name='fullName'
-				label='Full name'
-				placeholder='Please enter your full name'
-			/>
-			<CustomField control={control} type='email' name='email' label='Email' placeholder='Please enter your email' />
-			<CustomField
-				control={control}
-				type='password'
-				name='password'
-				label='Password'
-				placeholder='Please enter your password'
-			/>
+			<Field control={control} name='fullName'>
+				<Field.Label>Full Name</Field.Label>
+				<Field.Input type='text' placeholder='Enter your full name'>
+					<Field.Icon.IconPassword />
+				</Field.Input>
+			</Field>
+			<Field control={control} name='email'>
+				<Field.Label>Email</Field.Label>
+				<Field.Input type='email' placeholder='Enter your full name' />
+			</Field>
 			<CustomButton size='large' type='submit'>
 				Sign Up
 			</CustomButton>
