@@ -3,7 +3,17 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useField } from "../../context/ContextField";
 
-const IconStyled = styled.div``;
+const IconStyled = styled.div`
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+	z-index: 10;
+	cursor: pointer;
+`;
 
 const IconPasswordShow = () => (
 	<svg width='21' height='17' viewBox='0 0 21 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -45,7 +55,7 @@ const Icon = ({ children, ...restProps }) => {
 
 Icon.IconPassword = function IconPassword() {
 	const { visible, handleVisible } = useField();
-	return <Icon onClick={handleVisible}>{visible ? <IconPasswordHidden /> : <IconPasswordShow />}</Icon>;
+	return <IconStyled onClick={handleVisible}>{visible ? <IconPasswordHidden /> : <IconPasswordShow />}</IconStyled>;
 };
 
 Icon.propTypes = {};

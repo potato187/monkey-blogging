@@ -30,9 +30,9 @@ const FormSignUp = ({ onSubmit = null }) => {
 
 	return (
 		<form onSubmit={handleSubmit(handleOnSubmit)} noValidate>
-			<Field control={control} name='fullName'>
+			<Field control={control} name='fullName' hasIcon={true}>
 				<Field.Label>Full Name</Field.Label>
-				<Field.Input type='text' placeholder='Enter your full name'>
+				<Field.Input type='password' placeholder='Enter your full name'>
 					<Field.Icon.IconPassword />
 				</Field.Input>
 			</Field>

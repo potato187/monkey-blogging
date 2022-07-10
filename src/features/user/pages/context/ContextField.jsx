@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 
 const FieldContext = createContext();
 
-const FieldProvider = ({ name, control, children, ...restProps }) => {
+const FieldProvider = ({ name, control, hasIcon = false, children, ...restProps }) => {
 	const id = useId();
-	const [visible, setVisible] = useState(true);
+	const [visible, setVisible] = useState(false);
 
 	const handleVisible = () => {
 		setVisible((prevState) => !prevState);
 	};
 
-	const values = { control, name, id, visible, handleVisible };
+	const values = { control, name, id, visible, hasIcon, handleVisible };
 	return (
 		<FieldContext.Provider value={values} {...restProps}>
 			{children}

@@ -8,8 +8,7 @@ import Icon from "./Icon";
 
 const FieldStyled = styled.div`
 	position: relative;
-	padding-bottom: 2rem;
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 `;
 
 const Field = ({ control, name, children, ...restProps }) => {

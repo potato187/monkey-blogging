@@ -20,13 +20,19 @@ const MessageError = styled.div`
 `;
 
 const InputStyled = styled.div`
-	${({ theme }) => css`
+	${({ hasIcon, theme }) => css`
+		position: relative;
+		z-index: 1;
+
 		> input {
 			width: 100%;
-			padding: 2rem;
+			padding: ${hasIcon ? "0 6rem 0 2rem" : "0 2rem"};
+			height: 5rem;
 			border-radius: 0.4rem;
 			border: 1px solid transparent;
 			outline: none;
+			position: relative;
+			z-index: 2;
 			background-color: ${theme.grayLight};
 		}
 	`};
@@ -42,7 +48,7 @@ const InputStyled = styled.div`
 `;
 
 const Input = ({ children, ...restProps }) => {
-	const { control, id, name, visible } = useField();
+	const { control, id, name, hasIcon, visible } = useField();
 
 	return (
 		<Controller
@@ -50,8 +56,8 @@ const Input = ({ children, ...restProps }) => {
 			name={name}
 			defaultValue=''
 			render={({ field, fieldState: { isValid, isTouched, error } }) => (
-				<InputStyled invalid={!isValid}>
-					<input id={id} {...field} {...restProps} type={visible ? restProps.type || "text" : "password"} />
+				<InputStyled invalid={!isValid} hasIcon={hasIcon}>
+					<input id={id} {...field} {...restProps} type={visible ? "text" : "password"} />
 					{!isValid && isTouched && <MessageError>{error?.message}</MessageError>}
 					{children}
 				</InputStyled>
