@@ -3,7 +3,9 @@ import { normalize } from "styled-normalize";
 
 const GlobalStyle = createGlobalStyle`
 	 ${normalize}
-
+		*, *::after, *::before {
+			box-sizing: border-box;
+		}
 	 html {
 		 font-size: 56.25%;
 	 }

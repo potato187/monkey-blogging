@@ -20,7 +20,7 @@ const MessageError = styled.div`
 `;
 
 const FiledStyled = styled.div`
-	${({ invalid, theme: { input } }) => css`
+	${({ theme: { input } }) => css`
 		position: relative;
 		padding-bottom: 2rem;
 		margin-bottom: 1rem;
@@ -40,7 +40,7 @@ const FiledStyled = styled.div`
 			font-weight: 500;
 			background-color: ${input.background};
 			border: 1px solid ${input.default};
-			border-radius: 0.8rem;
+			border-radius: 0.4rem;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
@@ -52,8 +52,10 @@ const FiledStyled = styled.div`
 			font-weight: 400;
 			color: ${input.placeHolder};
 		}
+	`};
 
-		${invalid &&
+	${({ invalid, theme: { input } }) =>
+		invalid &&
 		css`
 			${MessageError} {
 				opacity: 1;
@@ -63,8 +65,7 @@ const FiledStyled = styled.div`
 			> input {
 				border-color: ${input.error};
 			}
-		`}
-	`};
+		`};
 `;
 
 const CustomField = ({ control, name, label, ...rest }) => {
@@ -73,10 +74,10 @@ const CustomField = ({ control, name, label, ...rest }) => {
 		<Controller
 			control={control}
 			name={name}
-			render={({ field, fieldState: { error } }) => {
-				console.log(error);
+			defaultValue=''
+			render={({ field, fieldState: { invalid, isTouched, error } }) => {
 				return (
-					<FiledStyled invalid={!!error}>
+					<FiledStyled invalid={invalid && isTouched}>
 						{label && <label htmlFor={id}>{label}</label>}
 						<input id={id} {...field} {...rest} />
 						<MessageError>{error?.message}</MessageError>

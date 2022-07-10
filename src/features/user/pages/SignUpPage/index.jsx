@@ -1,23 +1,10 @@
-import React from "react";
 import { Container, Grid, GridColumn, Section } from "@/components";
+import React from "react";
 import { SignUpPageStyle } from "./style";
-import { useForm } from "react-hook-form";
-import { CustomField } from "../components";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+
+import FormSignUp from "./FormSignUp";
 
 const index = () => {
-	const schema = Yup.object().shape({
-		fullName: Yup.string().min(4, "Must be least 4 characters").required("Please fill out your name"),
-	});
-
-	const { handleSubmit, control } = useForm({
-		defaultValues: {
-			fullName: "",
-		},
-		resolver: yupResolver(schema),
-	});
-
 	const onSubmit = (values) => {
 		console.log(values);
 	};
@@ -35,16 +22,7 @@ const index = () => {
 									</a>
 								</div>
 								<h1>Sign up page</h1>
-								<form onSubmit={handleSubmit(onSubmit)}>
-									<CustomField
-										control={control}
-										type='text'
-										name='fullName'
-										label='Full name'
-										placeholder='Please enter your full name'
-									/>
-									<button type='submit'>submit</button>
-								</form>
+								<FormSignUp onSubmit={onSubmit} />
 							</div>
 						</GridColumn>
 					</Grid>

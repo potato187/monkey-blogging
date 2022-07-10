@@ -12,6 +12,7 @@ export const theme = {
 	grayf1: "#F1F1F3",
 	gray80: "#808191",
 	black: "#171725",
+	gradientPrimary: "linear-gradient(107.61deg, #00A7B4 15.59%, #A4D96C 87.25%);",
 
 	input: {
 		label: "##4B5264",
