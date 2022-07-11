@@ -11,7 +11,7 @@ const MessageError = styled.div`
 		color: ${input.error};
 		position: absolute;
 		left: 0;
-		bottom: 0;
+		bottom: -2.2rem;
 		opacity: 0;
 		visibility: hidden;
 		transition: 0.25s ease-in-out;

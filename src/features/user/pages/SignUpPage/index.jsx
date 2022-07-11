@@ -1,13 +1,21 @@
-import { Container, Grid, GridColumn, Section } from "@/components";
+import { Container, Grid, GridColumn, Section, Flex } from "@/components";
 import React from "react";
 import { SignUpPageStyle } from "./style";
 
 import FormSignUp from "./FormSignUp";
+import { useMounted } from "@/hooks";
+import { Heading } from "../../../../components";
 
 const index = () => {
 	const onSubmit = (values) => {
 		console.log(values);
 	};
+
+	const updateTitle = () => {
+		document.title = "Sign Up";
+	};
+
+	useMounted(updateTitle, []);
 
 	return (
 		<Section top='5rem' bottom='5rem'>
@@ -15,15 +23,15 @@ const index = () => {
 				<SignUpPageStyle>
 					<Grid>
 						<GridColumn columnStart={3} columnEnd={11}>
-							<div className='page-wrapper'>
-								<div className='logo'>
+							<Flex flow='column nowrap'>
+								<Flex alignItems='center' justifyContext='center'>
 									<a href='/'>
 										<img width='121' src='/images/logo.png' alt='Monkey Blogging Logo' />
 									</a>
-								</div>
-								<h1>Sign up page</h1>
+								</Flex>
+								<Heading direction='center'>Sign Up Page</Heading>
 								<FormSignUp onSubmit={onSubmit} />
-							</div>
+							</Flex>
 						</GridColumn>
 					</Grid>
 				</SignUpPageStyle>
