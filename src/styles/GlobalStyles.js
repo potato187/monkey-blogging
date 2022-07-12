@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
 		min-height: 100vh;
 		overflow-x: hidden;
 	 }
+
+	 @keyframes spin360 {
+			100% {
+				transform: rotate(1turn);
+			}
+	 }
 `;
 
 export default GlobalStyle;

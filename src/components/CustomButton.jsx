@@ -1,8 +1,7 @@
 import React, { createElement } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-
-const ButtonSize = { default: 1, medium: 1.1, large: 1.2 };
+import LoadingIcon from "./LoadingIcon";
 
 const ButtonStyle = styled(({ element, children, ...props }) => {
 	if (typeof element === "object") {
@@ -12,12 +11,13 @@ const ButtonStyle = styled(({ element, children, ...props }) => {
 
 	return createElement(element, props, children);
 })`
-	${({ size = "default", outline = 0, theme }) => css`
+	${({ outline = 0, theme }) => css`
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		height: ${(ButtonSize[size] * 4.2).toFixed(1)}rem;
-		padding: 0 ${(ButtonSize[size] * 2).toFixed(1)}rem;
+		height: 6rem;
+		padding: 0 2rem;
+		min-width: 12rem;
 		color: ${!!outline ? theme.primary : "#ffffff"};
 		text-decoration: none;
 		border: 2px solid ${!!outline ? theme.primary : "transparent"};
@@ -30,10 +30,10 @@ const ButtonStyle = styled(({ element, children, ...props }) => {
 	`}
 `;
 
-const CustomButton = ({ element = "button", children, ...rest }) => {
+const CustomButton = ({ element = "button", isLoading = false, children, ...rest }) => {
 	return (
 		<ButtonStyle element={element} {...rest}>
-			{children}
+			{isLoading ? <LoadingIcon /> : children}
 		</ButtonStyle>
 	);
 };

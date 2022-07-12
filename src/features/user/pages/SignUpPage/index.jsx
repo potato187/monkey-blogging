@@ -15,6 +15,11 @@ const index = () => {
 		document.title = "Sign Up";
 	};
 
+	const register = async () => {
+		try {
+		} catch (error) {}
+	};
+
 	useMounted(updateTitle, []);
 
 	return (
