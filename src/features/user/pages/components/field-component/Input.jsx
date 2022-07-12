@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { Controller } from "react-hook-form";
 import { useField } from "../../context/ContextField";
 import styled, { css } from "styled-components";
+import { ref } from "yup";
 
 const MessageError = styled.div`
 	${({ theme: { input } }) => css`
@@ -49,6 +50,7 @@ const InputStyled = styled.div`
 
 const Input = ({ children, ...restProps }) => {
 	const { control, id, name, hasIcon, visible } = useField();
+	const ref = useRef(restProps.type);
 
 	return (
 		<Controller
@@ -57,7 +59,7 @@ const Input = ({ children, ...restProps }) => {
 			defaultValue=''
 			render={({ field, fieldState: { isValid, isTouched, error } }) => (
 				<InputStyled invalid={!isValid} hasIcon={hasIcon}>
-					<input id={id} {...field} {...restProps} type={visible ? "text" : "password"} />
+					<input id={id} {...field} {...restProps} type={visible ? "text" : ref.current} />
 					{!isValid && isTouched && <MessageError>{error?.message}</MessageError>}
 					{children}
 				</InputStyled>

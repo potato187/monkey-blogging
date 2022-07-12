@@ -22,11 +22,12 @@ const FormSignUp = ({ onSubmit = null }) => {
 		}
 	};
 
-	const { handleSubmit, control } = useForm({
+	const { handleSubmit, control, field } = useForm({
 		defaultValues: {
 			fullName: "",
 		},
 		resolver: yupResolver(schema),
+		mode: "onChange",
 	});
 
 	return (
