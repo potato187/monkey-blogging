@@ -28,6 +28,11 @@ const ButtonStyle = styled(({ element, children, ...props }) => {
 		transition: 0.25s ease-in-out;
 		transition-property: background-color, color;
 	`}
+	&[disabled] {
+		user-select: none;
+		pointer-events: none;
+		opacity: 0.75;
+	}
 `;
 
 const CustomButton = ({ element = "button", isLoading = false, children, ...rest }) => {
@@ -40,6 +45,7 @@ const CustomButton = ({ element = "button", isLoading = false, children, ...rest
 
 CustomButton.propTypes = {
 	element: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+	isLoading: PropTypes.bool,
 };
 
 export default CustomButton;
