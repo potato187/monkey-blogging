@@ -1,14 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/getAuth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-	apiKey: process.env.FIRE_BASE_SECRET_KEY_API,
-	authDomain: "monkey-blogging-cc9e4.firebaseapp.com",
-	projectId: "monkey-blogging-cc9e4",
-	storageBucket: "monkey-blogging-cc9e4.appspot.com",
-	messagingSenderId: "110535142787",
-	appId: "1:110535142787:web:34acd0ca327ac5892b5ab6",
+	apiKey: import.meta.env.VITE_REACT_API_KEY,
+	authDomain: import.meta.env.VITE_REACT_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_REACT_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_REACT_STORAGE,
+	messagingSenderId: import.meta.env.VITE_REACT_SENDER_ID,
+	appId: import.meta.env.VITE_REACT_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

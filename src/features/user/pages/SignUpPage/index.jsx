@@ -1,12 +1,13 @@
-import { Container, Grid, GridColumn, Section, Flex } from "@/components";
-import React from "react";
-import { SignUpPageStyle } from "./style";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import FormSignUp from "./FormSignUp";
+import { Container, Flex, Grid, GridColumn, Heading, Section } from "@/components";
 import { useMounted } from "@/hooks";
-import { Heading } from "@/components";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React from "react";
 import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import FormSignUp from "./FormSignUp";
+import { SignUpPageStyle } from "./style";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/config";
 
 const index = () => {
 	const schema = Yup.object().shape({
@@ -30,12 +31,13 @@ const index = () => {
 	});
 
 	const onSubmit = async (values) => {
-		const res = await new Promise((resolve, reject) => {
-			setTimeout(() => {
-				console.log(JSON.stringify(values));
-				resolve();
-			}, 5000);
-		});
+		if (!isValid) return false;
+
+		try {
+			const response = await createUserWithEmailAndPassword(auth, values["fullName"], values["password"]);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const updateTitle = () => {

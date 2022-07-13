@@ -21,7 +21,7 @@ const FormSignUp = ({ control = {}, isSubmitting = false, ...restProps }) => {
 				</Field.Input>
 			</Field>
 			<Flex justifyContext='center'>
-				<CustomButton size='large' type='submit' isLoading={isSubmitting} disabled={isSubmitting}>
+				<CustomButton type='submit' isLoading={isSubmitting} disabled={isSubmitting}>
 					Sign Up
 				</CustomButton>
 			</Flex>
