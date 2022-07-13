@@ -34,7 +34,7 @@ const index = () => {
 		if (!isValid) return false;
 
 		try {
-			const response = await createUserWithEmailAndPassword(auth, values["fullName"], values["password"]);
+			const response = await createUserWithEmailAndPassword(auth, values["email"], values["password"]);
 		} catch (error) {
 			console.log(error);
 		}
