@@ -1,13 +1,14 @@
 import { Container, Flex, Grid, GridColumn, Heading, Section } from "@/components";
+import { auth, database } from "@/firebase/config";
 import { useMounted } from "@/hooks";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import FormSignUp from "./FormSignUp";
 import { SignUpPageStyle } from "./style";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase/config";
 
 const index = () => {
 	const schema = Yup.object().shape({
@@ -30,11 +31,24 @@ const index = () => {
 		mode: "onChange",
 	});
 
-	const onSubmit = async (values) => {
-		if (!isValid) return false;
+	const registerUser = async (auth, email, password) => {
+		return await createUserWithEmailAndPassword(auth, email, password);
+	};
 
+	const profile = async (auth, profile) => {
+		return await updateProfile(auth.currentUser, profile);
+	};
+
+	const addUser = async (colRef, profile) => {
+		return await addDoc(colRef, profile);
+	};
+
+	const onSubmit = async ({ fullName, email, password }) => {
 		try {
-			const response = await createUserWithEmailAndPassword(auth, values["email"], values["password"]);
+			await registerUser(auth, email, password);
+			await profile(auth, { displayName: fullName });
+			const colRef = collection(database, "users");
+			await addUser(colRef, { name: fullName, email, password });
 		} catch (error) {
 			console.log(error);
 		}
