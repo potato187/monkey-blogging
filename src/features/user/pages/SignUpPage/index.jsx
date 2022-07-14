@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import FormSignUp from "./FormSignUp";
 import { SignUpPageStyle } from "./style";
@@ -18,6 +20,8 @@ const index = () => {
 			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, "Password is not strong enough")
 			.required("Please fill out your password"),
 	});
+
+	const navigate = useNavigate();
 
 	const {
 		handleSubmit,
@@ -49,6 +53,8 @@ const index = () => {
 			await profile(auth, { displayName: fullName });
 			const colRef = collection(database, "users");
 			await addUser(colRef, { name: fullName, email, password });
+			toast.success("Register successfully", { autoClose: 1000, pauseOnHover: false });
+			navigate("/");
 		} catch (error) {
 			console.log(error);
 		}
