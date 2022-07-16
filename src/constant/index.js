@@ -1,6 +1,6 @@
 const PATH = {
 	SIGN_UP: "sign-up",
-	SIGN_OUT: "sign-out",
+	SIGN_IN: "sign-in",
 	HOME: "/",
 };
 

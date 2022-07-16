@@ -1,6 +1,6 @@
-import { Container, Flex, Grid, GridColumn, Heading, Section } from "@/components";
 import { auth, database } from "@/firebase/config";
 import { useMounted } from "@/hooks";
+import { toastify } from "@/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
@@ -8,9 +8,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { toastify } from "@/utils";
+import { Layout } from "../Layouts";
 import FormSignUp from "./FormSignUp";
-import { SignUpPageStyle } from "./style";
 
 const index = () => {
 	const schema = Yup.object().shape({
@@ -30,6 +29,8 @@ const index = () => {
 	} = useForm({
 		defaultValues: {
 			fullName: "",
+			email: "",
+			password: "",
 		},
 		resolver: yupResolver(schema),
 		mode: "onChange",
@@ -67,25 +68,9 @@ const index = () => {
 	useMounted(updateTitle, []);
 
 	return (
-		<Section top='5rem' bottom='5rem'>
-			<Container>
-				<SignUpPageStyle>
-					<Grid>
-						<GridColumn columnStart={3} columnEnd={11}>
-							<Flex flow='column nowrap'>
-								<Flex alignItems='center' justifyContext='center'>
-									<a href='/'>
-										<img width='121' src='/images/logo.png' alt='Monkey Blogging Logo' />
-									</a>
-								</Flex>
-								<Heading direction='center'>Sign Up Page</Heading>
-								<FormSignUp onSubmit={handleSubmit(onSubmit)} control={control} isSubmitting={isSubmitting} />
-							</Flex>
-						</GridColumn>
-					</Grid>
-				</SignUpPageStyle>
-			</Container>
-		</Section>
+		<Layout heading='Sign Up Page'>
+			<FormSignUp onSubmit={handleSubmit(onSubmit)} control={control} isSubmitting={isSubmitting} />
+		</Layout>
 	);
 };
 

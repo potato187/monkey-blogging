@@ -1,1 +1,1 @@
-export { default as toastify } from "./toast";
+export { default as toastify, getMessageFromErrorCode } from "./toast";

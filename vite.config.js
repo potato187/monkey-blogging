@@ -6,7 +6,5 @@ import * as dotenv from "dotenv";
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
-	alias: {
-		"@": path.resolve(__dirname, "./src"),
-	},
+	alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }],
 });

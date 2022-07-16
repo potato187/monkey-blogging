@@ -1,10 +1,15 @@
 import { withUserExists } from "../../hocs";
-import { SignUpPage } from "./pages";
+import { SignUpPage, SignInPage } from "./pages";
+import { PATH } from "@/constant";
 
 const publicRoutes = [
 	{
-		path: "/sign-up",
+		path: PATH.SIGN_UP,
 		Element: withUserExists(SignUpPage),
+	},
+	{
+		path: PATH.SIGN_IN,
+		Element: withUserExists(SignInPage),
 	},
 ];
 
