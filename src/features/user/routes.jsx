@@ -1,9 +1,10 @@
+import { withUserExists } from "../../hocs";
 import { SignUpPage } from "./pages";
 
 const publicRoutes = [
 	{
 		path: "/sign-up",
-		element: <SignUpPage />,
+		Element: withUserExists(SignUpPage),
 	},
 ];
 

@@ -5,8 +5,8 @@ import { publicRoutes } from "./routes";
 const UserFeature = () => {
 	return (
 		<Routes>
-			{publicRoutes.map(({ ...rest }, index) => (
-				<Route key={index} {...rest} />
+			{publicRoutes.map(({ Element, ...props }, index) => (
+				<Route key={index} element={<Element />} {...props} />
 			))}
 		</Routes>
 	);
