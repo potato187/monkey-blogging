@@ -11,9 +11,9 @@ const withUserExists = (Component) => (props) => {
 
 	useMounted(() => {
 		if (user && Object.keys(user).length > 0) {
-			navigate("/");
+			navigate(PATH.HOME);
 		}
-	}, []);
+	}, [user]);
 
 	return <Component {...props} />;
 };
