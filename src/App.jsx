@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthProvider from "./contexts/auth-context";
-import PageFull from "./Layouts/PageFull";
+import { PageFull } from "./Layouts";
 import { publicRoutes } from "./routes";
 
 function App() {
