@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
 const toastify = (message = "", status = "success", options = {}) => {
-	toast[status](message, { autoClose: 1000, pauseOnHover: false, ...options });
+	toast[status](message, { autoClose: 2000, pauseOnHover: false, ...options });
 };
 
 const getMessageFromErrorCode = (errorCode) => {

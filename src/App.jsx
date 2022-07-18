@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthProvider from "./contexts/auth-context";
+import PageFull from "./Layouts/PageFull";
 import { publicRoutes } from "./routes";
 
 function App() {
@@ -7,8 +8,20 @@ function App() {
 		<AuthProvider>
 			<BrowserRouter>
 				<Routes>
-					{publicRoutes.map(({ ...rest }, index) => (
-						<Route key={index} {...rest} />
+					{publicRoutes.map(({ hasFullPage, Component, ...rest }, index) => (
+						<Route
+							key={index}
+							{...rest}
+							element={
+								hasFullPage ? (
+									<PageFull>
+										<Component />
+									</PageFull>
+								) : (
+									<Component />
+								)
+							}
+						/>
 					))}
 				</Routes>
 			</BrowserRouter>

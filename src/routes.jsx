@@ -3,7 +3,8 @@ import UserFeature from "./features/user";
 const publicRoutes = [
 	{
 		path: "/*",
-		element: <UserFeature />,
+		Component: UserFeature,
+		hasFullPage: true,
 	},
 ];
 
