@@ -4,4 +4,9 @@ const PATH = {
 	HOME: "/",
 };
 
-export { PATH };
+const GLOBAL = {
+	LOGO: "/public/images/logo.png",
+	APP_NAME: "Monkey Blogging",
+};
+
+export { PATH, GLOBAL };

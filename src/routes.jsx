@@ -1,4 +1,4 @@
-import UserFeature from "./features/user";
+import { AdminFeatures, UserFeatures } from "./features";
 import { NotFoundPage } from "./Layouts";
 
 const publicRoutes = [
@@ -9,8 +9,13 @@ const publicRoutes = [
 	},
 	,
 	{
-		path: "/*",
-		Component: UserFeature,
+		path: "/user/*",
+		Component: UserFeatures,
+		hasFullPage: false,
+	},
+	{
+		path: "/admin/*",
+		Component: AdminFeatures,
 		hasFullPage: false,
 	},
 ];
