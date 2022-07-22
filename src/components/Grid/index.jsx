@@ -9,7 +9,7 @@ const GridStyled = styled.div`
 		`${props.theme.spacingRatio * props.gapColumn}px ${props.theme.spacingRatio * props.gapRow}px`};
 `;
 
-const Grid = ({ columns = 12, gapColumn = 0, gapRow = 0, children, ...rest }) => {
+const index = ({ columns = 12, gapColumn = 0, gapRow = 0, children, ...rest }) => {
 	return (
 		<GridStyled columns={columns} gapColumn={gapColumn} gapRow={gapRow} {...rest}>
 			{children}
@@ -17,11 +17,11 @@ const Grid = ({ columns = 12, gapColumn = 0, gapRow = 0, children, ...rest }) =>
 	);
 };
 
-Grid.propTypes = {
+index.propTypes = {
 	children: PropTypes.node,
 	columns: PropTypes.number,
 	gapColumn: PropTypes.number,
 	gapRow: PropTypes.number,
 };
 
-export default Grid;
+export default index;

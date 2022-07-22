@@ -1,9 +1,7 @@
-import React, { createElement } from "react";
-import PropTypes from "prop-types";
+import { createElement } from "react";
 import styled, { css } from "styled-components";
-import LoadingIcon from "./LoadingIcon";
 
-const ButtonStyle = styled(({ element, children, ...props }) => {
+export const ButtonStyle = styled(({ element, children, ...props }) => {
 	if (typeof element === "object") {
 		const Component = element;
 		return <Component {...props}>{children}</Component>;
@@ -34,18 +32,3 @@ const ButtonStyle = styled(({ element, children, ...props }) => {
 		opacity: 0.75;
 	}
 `;
-
-const CustomButton = ({ element = "button", isLoading = false, children, ...rest }) => {
-	return (
-		<ButtonStyle element={element} {...rest}>
-			{isLoading ? <LoadingIcon /> : children}
-		</ButtonStyle>
-	);
-};
-
-CustomButton.propTypes = {
-	element: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-	isLoading: PropTypes.bool,
-};
-
-export default CustomButton;

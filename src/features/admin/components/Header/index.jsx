@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { Container, Grid, GridColumn, CustomButton } from "@/components";
+import { Container, Grid, GridColumn, Button } from "@/components";
 import { NavLink } from "react-router-dom";
 import { GLOBAL } from "@/constant";
 import { default as CardAuth } from "../CardAuth";

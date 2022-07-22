@@ -12,7 +12,7 @@ const FlexStyled = styled.div`
 	`};
 `;
 
-const Flex = ({
+const index = ({
 	inline = false,
 	flow = "row nowrap",
 	alignItems = "stretch",
@@ -27,11 +27,11 @@ const Flex = ({
 	);
 };
 
-Flex.propTypes = {
+index.propTypes = {
 	inline: PropTypes.bool,
 	flow: PropTypes.string,
 	alignItems: PropTypes.string,
 	justifyContext: PropTypes.string,
 };
 
-export default Flex;
+export default index;

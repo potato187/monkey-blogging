@@ -1,4 +1,4 @@
-import { CustomButton, Flex } from "@/components";
+import { Button, Flex } from "@/components";
 import PropTypes from "prop-types";
 import React from "react";
 import { Field } from "../components";
@@ -21,9 +21,9 @@ const FormSignUp = ({ control = {}, isSubmitting = false, ...restProps }) => {
 				</Field.Input>
 			</Field>
 			<Flex justifyContext='center'>
-				<CustomButton type='submit' isLoading={isSubmitting} disabled={isSubmitting}>
+				<Button type='submit' isLoading={isSubmitting} disabled={isSubmitting}>
 					Sign Up
-				</CustomButton>
+				</Button>
 			</Flex>
 		</form>
 	);

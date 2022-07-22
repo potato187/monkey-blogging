@@ -14,7 +14,7 @@ const HeadingStyled = styled.h1`
 	`};
 `;
 
-const Heading = ({ direction = "start", margin = "1.5rem 0", children, ...restProps }) => {
+const index = ({ direction = "start", margin = "1.5rem 0", children, ...restProps }) => {
 	return (
 		<HeadingStyled direction={direction} margin={margin} {...restProps}>
 			{children}
@@ -22,9 +22,9 @@ const Heading = ({ direction = "start", margin = "1.5rem 0", children, ...restPr
 	);
 };
 
-Heading.propTypes = {
+index.propTypes = {
 	direction: PropTypes.string,
 	margin: PropTypes.string,
 };
 
-export default Heading;
+export default index;
