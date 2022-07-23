@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { Container, Grid, GridColumn, Button } from "@/components";
 import { NavLink } from "react-router-dom";
 import { GLOBAL } from "@/constant";
-import { default as CardAuth } from "../CardAuth";
+import AvatarAuth from "../AvatarAuth";
 
 const HeaderStyled = styled.header`
 	${(props) => css`
@@ -17,19 +17,30 @@ const LogoStyled = styled(NavLink)`
 	`};
 `;
 
+const WrapperLogoStyled = styled(GridColumn)`
+	padding-left: 1.6rem;
+`;
+
+const WrapperNavStyled = styled(GridColumn)`
+	padding-r: 1.6rem;
+`;
+
 const index = ({}) => {
 	return (
 		<HeaderStyled>
 			<Container>
 				<Grid>
-					<GridColumn columnStart={1} columnEnd={3}>
+					<WrapperLogoStyled columnStart={1} columnEnd={3}>
 						<LogoStyled to='/'>
 							<img loading='lazy' width='43' height='56' src={GLOBAL.LOGO} alt={GLOBAL.APP_NAME} />
 						</LogoStyled>
-					</GridColumn>
-					<GridColumn columnStart={3} columnEnd={12} justifySelf='flex-end' alignSelf='center'>
-						<CardAuth />
-					</GridColumn>
+					</WrapperLogoStyled>
+					<WrapperNavStyled columnStart={3} columnEnd={13} justifySelf='flex-end' alignSelf='center'>
+						<AvatarAuth>
+							<AvatarAuth.Avatar />
+							<AvatarAuth.Dashboard>toggle</AvatarAuth.Dashboard>
+						</AvatarAuth>
+					</WrapperNavStyled>
 				</Grid>
 			</Container>
 		</HeaderStyled>

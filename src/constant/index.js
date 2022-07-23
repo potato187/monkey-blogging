@@ -5,7 +5,8 @@ const PATH = {
 };
 
 const GLOBAL = {
-	LOGO: "/public/images/logo.png",
+	LOGO: "/images/logo.png",
+	AVATAR_USER: "/images/avatar_user.jpg",
 	APP_NAME: "Monkey Blogging",
 };
 
