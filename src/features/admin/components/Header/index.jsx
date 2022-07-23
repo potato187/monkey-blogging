@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { Container, Grid, GridColumn, Button } from "@/components";
+import { Container, Grid, GridColumn, Button, Portal } from "@/components";
 import { NavLink } from "react-router-dom";
 import { GLOBAL } from "@/constant";
 import AvatarAuth from "../AvatarAuth";
+import { useMounted } from "@/hooks";
 
 const HeaderStyled = styled.header`
 	${(props) => css`
@@ -26,6 +27,28 @@ const WrapperNavStyled = styled(GridColumn)`
 `;
 
 const index = ({}) => {
+	const nodeRef = useRef(null);
+	const [coords, setCoords] = useState(null);
+	const [toggle, setToggle] = useState(false);
+
+	const handleSetToggle = () => {
+		setToggle((prevState) => !prevState);
+	};
+
+	const updateCoords = () => {
+		const rect = nodeRef.current.getBoundingClientRect();
+		setCoords(rect);
+	};
+
+	useMounted(() => {
+		updateCoords();
+		window.addEventListener("resize", updateCoords);
+
+		return () => {
+			window.removeEventListener("resize", updateCoords);
+		};
+	}, []);
+
 	return (
 		<HeaderStyled>
 			<Container>
@@ -36,9 +59,13 @@ const index = ({}) => {
 						</LogoStyled>
 					</WrapperLogoStyled>
 					<WrapperNavStyled columnStart={3} columnEnd={13} justifySelf='flex-end' alignSelf='center'>
-						<AvatarAuth>
-							<AvatarAuth.Avatar />
-							<AvatarAuth.Dashboard>toggle</AvatarAuth.Dashboard>
+						<AvatarAuth nodeRef={nodeRef}>
+							<AvatarAuth.Avatar handleSetToggle={handleSetToggle} />
+							<Portal>
+								<AvatarAuth.Dashboard toggle={toggle} coords={coords}>
+									toggle
+								</AvatarAuth.Dashboard>
+							</Portal>
 						</AvatarAuth>
 					</WrapperNavStyled>
 				</Grid>

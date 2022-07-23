@@ -15,9 +15,13 @@ const AvatarStyled = styled(Flex)`
 	`};
 `;
 
-const Avatar = ({ setToggle = null, pathImage = "", props }) => {
+const Avatar = ({ handleSetToggle = null, pathImage = "", props }) => {
+	const handleOnClick = () => {
+		if (!handleSetToggle) return false;
+		handleSetToggle();
+	};
 	return (
-		<AvatarStyled {...props}>
+		<AvatarStyled {...props} onClick={handleOnClick}>
 			<img src={pathImage || GLOBAL.AVATAR_USER} alt='Avatar user' width={28} height={28} />
 		</AvatarStyled>
 	);
@@ -25,7 +29,7 @@ const Avatar = ({ setToggle = null, pathImage = "", props }) => {
 
 Avatar.propTypes = {
 	pathImage: PropTypes.string,
-	setToggle: PropTypes.func,
+	handleSetToggle: PropTypes.func,
 };
 
 export default Avatar;

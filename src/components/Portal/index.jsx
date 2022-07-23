@@ -1,21 +1,48 @@
-import { useMounted } from "@/hooks";
-import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { element } from "prop-types";
+import React, { useLayoutEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import styled from "styled-components";
 
-const index = ({ id = "portal", children }) => {
-	const createPortal = (id) => {
-		const node = document.createElement("div");
-		node.id = id;
-		return node;
-	};
+const OverlayStyled = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9998;
+	transition: all 0.7s linear 0.35s;
+	pointer-events: none;
+	background: linear-gradient(180deg, #70685dcc 0, #4a575fcc 100%);
+	mix-blend-mode: multiply;
+`;
 
-	const portalWrapper = createPortal(id);
+const createPortalWrapper = (idElement) => {
+	const node = document.createElement("div");
+	node.id = idElement;
+	document.body.appendChild(node);
+	return node;
+};
 
-	useMounted(() => {
-		document.appendChild(portalWrapper);
-	}, []);
+const index = ({ idElement = "portal-wrapper", children }) => {
+	const [portal, setPortal] = useState(null);
 
-	return createPortal(<>{children}</>, portalWrapper);
+	useLayoutEffect(() => {
+		let element = document.getElementById(idElement);
+		if (!element) {
+			element = createPortalWrapper(idElement);
+		}
+		setPortal(element);
+	}, [idElement]);
+
+	if (portal === null) return <></>;
+
+	return createPortal(
+		<>
+			{children}
+			<OverlayStyled />
+		</>,
+		portal
+	);
 };
 
 index.propTypes = {
