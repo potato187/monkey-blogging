@@ -1,6 +1,6 @@
 import { Dashboard } from "./pages";
 
-const privateRoutes = [
+export const privateRoutes = [
 	{
 		path: "/*",
 		Component: Dashboard,
@@ -8,4 +8,21 @@ const privateRoutes = [
 	},
 ];
 
-export { privateRoutes };
+export const dashboardRoutes = [
+	{
+		to: "/profile",
+		text: "Profile",
+	},
+	{
+		to: "/blog",
+		text: "Blogs",
+	},
+	{
+		to: "/blog",
+		text: "Setting",
+	},
+	{
+		to: "/",
+		text: "SignOut",
+	},
+];

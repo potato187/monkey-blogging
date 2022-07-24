@@ -8,6 +8,7 @@ import AvatarAuth from "../AvatarAuth";
 import { useMounted } from "@/hooks";
 import ToggleProvider from "@/contexts/toggleContext";
 import { useOutsideAlerter } from "@/hooks";
+import { dashboardRoutes } from "../../routes";
 
 const HeaderStyled = styled.header`
 	${(props) => css`
@@ -30,23 +31,12 @@ const WrapperNavStyled = styled(GridColumn)`
 
 const index = ({}) => {
 	const nodeRef = useRef(null);
-	useOutsideAlerter(nodeRef, () => {
-		console.log("click outside");
-	});
+
 	const [coords, setCoords] = useState(null);
 
-	const updateCoords = () => {
+	useMounted(() => {
 		const rect = nodeRef.current.getBoundingClientRect();
 		setCoords(rect);
-	};
-
-	useMounted(() => {
-		updateCoords();
-		window.addEventListener("resize", updateCoords);
-
-		return () => {
-			window.removeEventListener("resize", updateCoords);
-		};
 	}, []);
 
 	return (
@@ -62,7 +52,16 @@ const index = ({}) => {
 						<ToggleProvider>
 							<AvatarAuth nodeRef={nodeRef}>
 								<AvatarAuth.Avatar />
-								<AvatarAuth.Dashboard>toggle</AvatarAuth.Dashboard>
+								<AvatarAuth.Dashboard>
+									<AvatarAuth.AvatarFullName />
+									<AvatarAuth.NavigateList>
+										{dashboardRoutes.map(({ text, ...props }, index) => (
+											<AvatarAuth.NavigateItem key={index} {...props}>
+												{text}
+											</AvatarAuth.NavigateItem>
+										))}
+									</AvatarAuth.NavigateList>
+								</AvatarAuth.Dashboard>
 							</AvatarAuth>
 						</ToggleProvider>
 					</WrapperNavStyled>

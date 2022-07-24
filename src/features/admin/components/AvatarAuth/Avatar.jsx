@@ -1,9 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
-import { GLOBAL } from "@/constant";
 import { Flex } from "@/components";
+import { GLOBAL } from "@/constant";
+import { useAuth } from "@/contexts/auth-context";
 import { useToggle } from "@/contexts/toggleContext";
+import PropTypes from "prop-types";
+import React from "react";
+import styled, { css } from "styled-components";
 
 const AvatarStyled = styled(Flex)`
 	${(props) => css`
