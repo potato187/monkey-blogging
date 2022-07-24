@@ -14,6 +14,20 @@ const GlobalStyle = createGlobalStyle`
 		min-height: 100vh;
 		overflow-x: hidden;
 	 }
+	.modal-enter {
+  opacity: 0;
+	}
+	.modal-enter-active {
+		opacity: 1;
+		transition: opacity 200ms;
+	}
+	.modal-exit {
+		opacity: 1;
+	}
+	.modal-exit-active {
+		opacity: 0;
+		transition: opacity 200ms;
+	}
 
 	 @keyframes spin360 {
 			100% {

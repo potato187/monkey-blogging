@@ -9,6 +9,7 @@ const useOutsideAlerter = (nodeRef, callback) => {
 				callback();
 			}
 		};
+
 		document.addEventListener("mousedown", handleClickOutSide);
 
 		return () => {

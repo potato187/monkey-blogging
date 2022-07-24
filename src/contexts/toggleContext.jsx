@@ -5,13 +5,15 @@ const toggleContext = createContext();
 
 const ToggleProvider = ({ initial = false, children, props }) => {
 	const [toggle, setToggle] = useState(initial);
-
+	const onClose = () => {
+		setToggle(false);
+	};
 	const handleSetToggle = () => {
 		setToggle((prevState) => !prevState);
 	};
 
 	return (
-		<toggleContext.Provider value={{ toggle, handleSetToggle }} {...props}>
+		<toggleContext.Provider value={{ toggle, handleSetToggle, onClose }} {...props}>
 			{children}
 		</toggleContext.Provider>
 	);

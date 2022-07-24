@@ -5,7 +5,9 @@ import Avatar from "./Avatar";
 import { Flex } from "@/components";
 import DashBoard from "./Dashboard";
 
-const AvatarAuthStyled = styled.div``;
+const AvatarAuthStyled = styled.div`
+	position: relative;
+`;
 
 const index = ({ nodeRef, children, ...props }) => {
 	return (

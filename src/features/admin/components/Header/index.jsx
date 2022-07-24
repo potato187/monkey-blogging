@@ -62,9 +62,7 @@ const index = ({}) => {
 						<ToggleProvider>
 							<AvatarAuth nodeRef={nodeRef}>
 								<AvatarAuth.Avatar />
-								<Portal>
-									<AvatarAuth.Dashboard coords={coords}>toggle</AvatarAuth.Dashboard>
-								</Portal>
+								<AvatarAuth.Dashboard>toggle</AvatarAuth.Dashboard>
 							</AvatarAuth>
 						</ToggleProvider>
 					</WrapperNavStyled>
