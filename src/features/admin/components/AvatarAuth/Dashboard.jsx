@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { useMounted } from "@/hooks";
+import { useToggle } from "@/contexts/toggleContext";
 
 const DashboardStyled = styled.div`
 	border-radius: 0.8rem;
@@ -29,8 +30,8 @@ const DashboardStyled = styled.div`
 		`};
 `;
 
-const DashBoard = ({ toggle = false, coords = {}, children, ...props }) => {
-	console.log(coords);
+const DashBoard = ({ coords = {}, children, ...props }) => {
+	const { toggle } = useToggle();
 	return (
 		<DashboardStyled
 			toggle={toggle}
@@ -45,7 +46,6 @@ const DashBoard = ({ toggle = false, coords = {}, children, ...props }) => {
 };
 
 DashBoard.propTypes = {
-	toggle: PropTypes.bool.isRequired,
 	coords: PropTypes.object,
 };
 

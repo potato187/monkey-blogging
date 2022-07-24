@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { GLOBAL } from "@/constant";
 import { Flex } from "@/components";
+import { useToggle } from "@/contexts/toggleContext";
 
 const AvatarStyled = styled(Flex)`
 	${(props) => css`
@@ -15,13 +16,10 @@ const AvatarStyled = styled(Flex)`
 	`};
 `;
 
-const Avatar = ({ handleSetToggle = null, pathImage = "", props }) => {
-	const handleOnClick = () => {
-		if (!handleSetToggle) return false;
-		handleSetToggle();
-	};
+const Avatar = ({ pathImage = "", props }) => {
+	const { toggle, handleSetToggle } = useToggle();
 	return (
-		<AvatarStyled {...props} onClick={handleOnClick}>
+		<AvatarStyled {...props} onClick={handleSetToggle}>
 			<img src={pathImage || GLOBAL.AVATAR_USER} alt='Avatar user' width={28} height={28} />
 		</AvatarStyled>
 	);
@@ -29,7 +27,6 @@ const Avatar = ({ handleSetToggle = null, pathImage = "", props }) => {
 
 Avatar.propTypes = {
 	pathImage: PropTypes.string,
-	handleSetToggle: PropTypes.func,
 };
 
 export default Avatar;

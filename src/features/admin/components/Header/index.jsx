@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 import { GLOBAL } from "@/constant";
 import AvatarAuth from "../AvatarAuth";
 import { useMounted } from "@/hooks";
+import ToggleProvider from "@/contexts/toggleContext";
+import { useOutsideAlerter } from "@/hooks";
 
 const HeaderStyled = styled.header`
 	${(props) => css`
@@ -28,12 +30,10 @@ const WrapperNavStyled = styled(GridColumn)`
 
 const index = ({}) => {
 	const nodeRef = useRef(null);
+	useOutsideAlerter(nodeRef, () => {
+		console.log("click outside");
+	});
 	const [coords, setCoords] = useState(null);
-	const [toggle, setToggle] = useState(false);
-
-	const handleSetToggle = () => {
-		setToggle((prevState) => !prevState);
-	};
 
 	const updateCoords = () => {
 		const rect = nodeRef.current.getBoundingClientRect();
@@ -59,14 +59,14 @@ const index = ({}) => {
 						</LogoStyled>
 					</WrapperLogoStyled>
 					<WrapperNavStyled columnStart={3} columnEnd={13} justifySelf='flex-end' alignSelf='center'>
-						<AvatarAuth nodeRef={nodeRef}>
-							<AvatarAuth.Avatar handleSetToggle={handleSetToggle} />
-							<Portal>
-								<AvatarAuth.Dashboard toggle={toggle} coords={coords}>
-									toggle
-								</AvatarAuth.Dashboard>
-							</Portal>
-						</AvatarAuth>
+						<ToggleProvider>
+							<AvatarAuth nodeRef={nodeRef}>
+								<AvatarAuth.Avatar />
+								<Portal>
+									<AvatarAuth.Dashboard coords={coords}>toggle</AvatarAuth.Dashboard>
+								</Portal>
+							</AvatarAuth>
+						</ToggleProvider>
 					</WrapperNavStyled>
 				</Grid>
 			</Container>
