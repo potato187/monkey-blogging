@@ -2,8 +2,9 @@ import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
 
 const GlobalStyle = createGlobalStyle`
-	 ${normalize}
-		*, *::after, *::before {
+ ${normalize}
+
+	*, *::after, *::before {
 			box-sizing: border-box;
 		}
 	 html {
@@ -14,6 +15,11 @@ const GlobalStyle = createGlobalStyle`
 		min-height: 100vh;
 		overflow-x: hidden;
 	 }
+
+	 h1,h2,h3,h4,h5,h6 {
+		margin-top: 0;
+	 }
+	 
 	.modal-enter {
   opacity: 0;
 	}
@@ -28,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 		opacity: 0;
 		transition: opacity 200ms;
 	}
+	
 
 	 @keyframes spin360 {
 			100% {

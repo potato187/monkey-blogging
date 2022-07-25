@@ -14,6 +14,8 @@ const DashboardStyled = styled.div`
 	transform: translateX(-50%);
 	z-index: 100;
 	background-color: #ffffff;
+	border-radius: 1rem;
+	box-shadow: 0 -4px 16px rgb(0 0 0 / 20%);
 `;
 
 const DashBoard = ({ coords = {}, children, ...props }) => {
@@ -21,14 +23,7 @@ const DashBoard = ({ coords = {}, children, ...props }) => {
 
 	return (
 		<CSSTransition in={toggle} timeout={300} unmountOnExit classNames='modal'>
-			<DashboardStyled
-				left={coords?.left}
-				top={coords?.top + coords?.height + window?.scrollY}
-				width={coords?.width}
-				{...props}
-			>
-				{children}
-			</DashboardStyled>
+			<DashboardStyled {...props}>{children}</DashboardStyled>
 		</CSSTransition>
 	);
 };
